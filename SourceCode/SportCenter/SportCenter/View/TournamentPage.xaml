@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:view="clr-namespace:SportCenter.View;assembly=SportCenter"
+            x:Class="SportCenter.View.TournamentPage"
+            BarBackgroundColor="{Binding SelectedTournament.FormatColorLight}"
+            BarTextColor="White">
+  <!--Pages can be added as references or inline-->
+    <TabbedPage.Children>
+        <view:TournamentPage_Info BindingContext="{Binding }" 
+                                   IconImageSource="tournamentInfo.png"/>
+        <view:TournamentPage_Matches BindingContext="{Binding }" 
+                                      IconImageSource="tournamentMatches.png"/>
+        <view:TournamentPage_Participants BindingContext="{Binding }" 
+                                           IconImageSource="tournamentParticipants.png"/>
+    </TabbedPage.Children>
+</TabbedPage>

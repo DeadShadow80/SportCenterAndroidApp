@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="SportCenter.View.MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="18*"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="1" Source="logo.png" Margin="0,0,0,-7" Aspect="AspectFit" />
+        <BoxView Grid.Row="2" BackgroundColor="#ffa30b" HeightRequest="1" Margin="20, 0, 20, 0"/>
+
+        <ListView ItemsSource="{Binding tournaments}" RowHeight="165" SeparatorColor="Transparent" Grid.Row="3" Margin="0, 10, 0, 0"
+                  ItemSelected="ListView_ItemSelected" x:Name="MainPageListView" CachingStrategy="RecycleElementAndDataTemplate">
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame CornerRadius="20" BorderColor="{Binding FormatColorLight}" Padding="20, 10, 10, 10" BackgroundColor="{Binding FormatColorLight}" Margin="20, 10, 20, 10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="65*"></ColumnDefinition>
+                                    <ColumnDefinition Width="35*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" FontSize="Title" TextColor="White" FontFamily="Atkinson-Bold"></Label>
+                                    <Line X2="100" Stroke="White" StrokeThickness="4" />
+                                    <Label Text="{Binding SoloTeam}" TextColor="White" FontSize="Small" FontFamily="Atkinson-Regular"></Label>
+                                    <Label Text="Număr de participanți" TextColor="White" FontSize="Small" FontFamily="Atkinson-Italic"></Label>
+                                    <Label Text="{Binding NumberOfParticipants}" TextColor="White" FontFamily="Atkinson-Bold" FontSize="Medium"></Label>
+                                </StackLayout>
+                                <Image Grid.Column="1" Source="{Binding FormatIcon}" Margin="0, 18, 10, 18"></Image>
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Grid.Row="3" Text="+" BorderWidth="0" FontFamily="Atkinson-Bold" BackgroundColor="White" BorderRadius="30" TextColor="#1DAD4B" HorizontalOptions="End" WidthRequest="60" HeightRequest="60" Margin="0,0,20,22" VerticalOptions="End" FontSize="Title" Clicked="Button_Clicked"/>
+
+    </Grid>
+    
+
+</ContentPage>

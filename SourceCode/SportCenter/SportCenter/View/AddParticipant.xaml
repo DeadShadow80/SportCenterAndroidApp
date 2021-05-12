@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helper="clr-namespace:SportCenter.Helper"
+             x:Class="SportCenter.View.AddParticipant">
+    <ContentPage.Resources>
+        <helper:ReturnMultiConverter x:Key="ReturnMultiConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="18*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="#383838" Padding="10" Grid.Row="0">
+                <Image Grid.Row="1" Source="logo.png" Margin="0,0,0,0" Aspect="AspectFit" />
+            </Frame>
+            <Frame CornerRadius="20" BorderColor="#1C9D48" BackgroundColor="#1C9D48" Grid.Row="1" Margin="10, 0, 10, 20" Padding="0">
+                <Grid Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="18*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Text="Adaugă participant" HorizontalOptions="Center" VerticalOptions="Center" VerticalTextAlignment="Center" Grid.Row="0" 
+                           FontFamily="Atkinson-Bold" TextColor="White" TextTransform="Uppercase" />
+                    <!--  Clicked="Button_Clicked" -->
+                    <Button HorizontalOptions="End" Grid.Row="0" WidthRequest="20"  Margin="0, 0, 20, 0" Padding="0" 
+                            FontFamily="Atkinson-Bold" Rotation="45" FontSize="Title" 
+                            BackgroundColor="Transparent" TextColor="White" 
+                            Text="+" Command="{Binding CloseCommand}"/>
+                    <Frame Grid.Row="1" CornerRadius="20" BorderColor="#107438" BackgroundColor="#107438">
+                        <StackLayout>
+                            <Label Text="Nume" FontFamily="Atkinson-Italic" TextColor="White"/>
+                            <Entry Placeholder="Nume și prenume" Text="{Binding Name}" Keyboard="Text" TextColor="White" PlaceholderColor="#40F7F7F7"/>
+                            <Label Text="Email" FontFamily="Atkinson-Italic" TextColor="White"/>
+                            <Entry Placeholder="Eg. email@yahoo.com" Keyboard="Email" Text="{Binding Email}" TextColor="White" PlaceholderColor="#40F7F7F7"/>
+                            <Label Text="Număr de telefon" FontFamily="Atkinson-Italic" TextColor="White"/>
+                            <Entry Placeholder="Eg. 0712345678" Keyboard="Telephone" Text="{Binding PhoneNr}" TextColor="White" PlaceholderColor="#40F7F7F7"/>
+                            <!-- Clicked="Button_Clicked_1" -->
+                            <Button HorizontalOptions="Center" WidthRequest="70" HeightRequest="70" CornerRadius="35"  Margin="0, 20, 0, 0" Padding="0"
+                                    FontFamily="Atkinson-Bold" FontSize="Title" TextColor="#1DAD4B" BackgroundColor="White" Text="✓"
+                                    Command="{Binding SaveCommand}">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                            <VisualStateGroupList>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualState x:Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="White" />
+                                                            <Setter Property="TextColor" Value="#1DAD4B" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Pressed">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="Gray" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Disabled">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="White" />
+                                                            <Setter Property="TextColor" Value="LightGray" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateGroupList>
+                                        </Setter>
+                                    </Style>
+                                </Button.Style>
+                                <Button.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource ReturnMultiConverter}">
+                                        <Binding Path="Name" />
+                                        <Binding Path="Email" />
+                                        <Binding Path="PhoneNr" />
+                                    </MultiBinding>
+                                </Button.CommandParameter>
+                            </Button>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

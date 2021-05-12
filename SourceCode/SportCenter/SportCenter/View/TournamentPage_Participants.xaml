@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:SportCenter.ViewModels;assembly=SportCenter"
+             x:Class="SportCenter.View.TournamentPage_Participants"
+             BackgroundColor="#383838">
+
+    <!-- <ContentPage.BindingContext> -->
+    <!--     <viewModels:TournamentPage_ParticipantsViewModel></viewModels:TournamentPage_ParticipantsViewModel> -->
+    <!-- </ContentPage.BindingContext> -->
+    <Frame CornerRadius="15"  BackgroundColor="{Binding SelectedTournament.FormatColorLight}" Margin="10, 20, 10, 20" Padding="0, 0, 0, 0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="18*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Text="{Binding SelectedTournament.Name}" HorizontalOptions="Center" Grid.Row="0" VerticalOptions="Center" VerticalTextAlignment="Center" FontFamily="Atkinson-Bold" TextColor="White" TextTransform="Uppercase"></Label>
+            <!-- Close button -->
+            <Button HorizontalOptions="End" Text="+" Grid.Row="0" WidthRequest="40" HeightRequest="30" BackgroundColor="Transparent" TextColor="White" Margin="0, 0, 20, 0" FontFamily="Atkinson-Bold" Clicked="Button_Clicked" Rotation="45" FontSize="Title"></Button>
+            <Frame CornerRadius="20" BackgroundColor="{Binding SelectedTournament.FormatColorDark}" 
+                   Grid.Row="1" Margin="0, 0, 0, 0" Padding="0, 10, 0, 0" VerticalOptions="Start">
+                <ListView ItemsSource="{Binding SelectedTournament.Teams}" HasUnevenRows="True" VerticalOptions="Start" SelectionMode="None" SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame CornerRadius="20" BackgroundColor="Transparent" Margin="20, 10, 20, 10" BorderColor="White" Padding="10, 10, 0, 10">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid Grid.Row="0" Margin="10, 10, 10, 0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" FontFamily="Atkinson-Bold" TextColor="White" FontSize="25"></Label>
+                                            <Grid Grid.Row="1" Grid.Column="0" IsVisible="{Binding VisiblePoints}" IsEnabled="{Binding VisiblePoints}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="0" Text="Puncte:" FontFamily="Atkinson-Bold" TextColor="White" FontSize="25"></Label>
+                                                <Label Grid.Column="1" Text="{Binding Points}" FontFamily="Atkinson-Bold" TextColor="White" FontSize="25"></Label>
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="0, 0, 10, 0" HeightRequest="30" VerticalOptions="Center">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <Button Grid.Column="0" Text="-" BorderWidth="0" BackgroundColor="Transparent" TextColor="White" FontSize="Title" FontFamily="Atkinson-Bold"  WidthRequest="25" Padding="0" 
+                                                        Command="{Binding Path=ParticipantRemoveTeamMemberCommand, Source={RelativeSource AncestorType={x:Type viewModels:TournamentPageViewModel}}}"
+                                                        CommandParameter="{Binding }"/>
+                                                <Button Grid.Column="1" Text="+" BorderWidth="0" BackgroundColor="Transparent" TextColor="White" FontSize="Title" FontFamily="Atkinson-Bold" WidthRequest="25" Padding="0" 
+                                                        Command="{Binding Path=ParticipantAddTeamMemberCommand, Source={RelativeSource AncestorType={x:Type viewModels:TournamentPageViewModel}}}"
+                                                        CommandParameter="{Binding }"/>
+                                            </Grid>
+                                        </Grid>
+                                        <ListView ItemsSource="{Binding Participants}" RowHeight="110" SeparatorVisibility="None" Grid.Row="1" SelectionMode="None" VerticalScrollBarVisibility="Never">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <StackLayout>
+                                                            <Label Text="{Binding Name}" Margin="10, 10, 10, 0" FontFamily="Atkinson-" TextColor="White"/>
+                                                            <StackLayout Orientation="Horizontal" Margin="10, 0, 0, 0">
+                                                                <Label Text="Mail: " TextColor="White" FontFamily="Atkinson-Italic"/>
+                                                                <Label Text="{Binding Mail}" TextColor="White" FontFamily="Atkinson-Italic"/>
+                                                            </StackLayout>
+                                                            <StackLayout Orientation="Horizontal" Margin="10, 0, 0, 0">
+                                                                <Label Text="Număr de telefon: " TextColor="White" FontFamily="Atkinson-Italic"/>
+                                                                <Label Text="{Binding PhoneNumber}" TextColor="White" FontFamily="Atkinson-Italic"/>
+                                                            </StackLayout>
+                                                            <StackLayout Orientation="Horizontal" Margin="10, 0, 0, 0" IsVisible="{Binding VisiblePoints}" IsEnabled="{Binding VisiblePoints}">
+                                                                <Label Text="Puncte: " TextColor="White" FontFamily="Atkinson-Italic"/>
+                                                                <Label Text="{Binding Points}" TextColor="White" FontFamily="Atkinson-Italic"/>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+            <!-- Add team -->
+            <Button Grid.Row="1" Text="+" BorderWidth="0" FontFamily="Atkinson-Bold" BackgroundColor="White" CornerRadius="30" 
+                    TextColor="{Binding SelectedTournament.FormatColorDark}"
+                    IsVisible="{Binding SelectedTournament.AddTeamButton}"
+                    Command="{Binding ParticipantAddTeamCommand}"
+                    CommandParameter="{Binding SelectedTournament.Team}"
+                    HorizontalOptions="End" VerticalOptions="End"
+                    WidthRequest="60" HeightRequest="60" Margin="0,0,20,22" FontSize="Title">
+            </Button>
+        </Grid>
+    </Frame>
+</ContentPage>

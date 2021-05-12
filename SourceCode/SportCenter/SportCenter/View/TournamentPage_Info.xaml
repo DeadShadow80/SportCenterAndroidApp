@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SportCenter.View.TournamentPage_Info"
+             BackgroundColor="#383838">
+    <ContentPage.Content>
+        <Frame CornerRadius="15"  BackgroundColor="{Binding SelectedTournament.FormatColorLight}" Margin="10, 20, 10, 20" Padding="0, 0, 0, 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="18*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Text="{Binding SelectedTournament.Name}" HorizontalOptions="Center" Grid.Row="0" VerticalOptions="Center" VerticalTextAlignment="Center" FontFamily="Atkinson-Bold" TextColor="White" TextTransform="Uppercase"></Label>
+                <Button HorizontalOptions="End" Text="+" Grid.Row="0" WidthRequest="40" HeightRequest="30" BackgroundColor="Transparent" TextColor="White" Margin="0, 0, 20, 0" FontFamily="Atkinson-Bold" Clicked="Button_Clicked" Rotation="45" FontSize="Title"></Button>
+                <Frame CornerRadius="20" BackgroundColor="{Binding SelectedTournament.FormatColorDark}" Grid.Row="1" Margin="0, 0, 0, 0" Padding="20, 10, 20, 0">
+                    <StackLayout>
+                        <Label Text="Descriere" TextColor="White" TextTransform="Uppercase" FontSize="35" HorizontalOptions="Start" FontFamily="Atkinson-Bold"></Label>
+                        <Label Text="{Binding SelectedTournament.SoloTeam}" TextColor="White" FontSize="Small" FontFamily="Atkinson-Bold" HorizontalOptions="Start"></Label>
+                        <Label Text="{Binding SelectedTournament.Description}" FontFamily="Atkinson-Regular" TextColor="White" FontSize="Small" Margin="0, 0, 0, 40"></Label>
+                        <Label Text="Format" TextColor="White" TextTransform="Uppercase" FontSize="35" HorizontalOptions="Start" FontFamily="Atkinson-Bold"></Label>
+                        <Frame CornerRadius="20" Padding="0, 0, 0, 0" BackgroundColor="{Binding SelectedTournament.FormatColorLight}" Margin="0, 0, 0, 40">
+                            <Grid>
+                                <Frame CornerRadius="20" BackgroundColor="White" Margin="0, 0, 100, 0">
+                                    <Label Text="{Binding SelectedTournament.Format}" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="15" FontFamily="Atkinson-Bold" 
+                                           TextColor="{Binding SelectedTournament.FormatColorLight}" TextTransform="Uppercase" ScaleX="1.2" ScaleY="1.2"></Label>
+                                </Frame>
+                                <Image Source="{Binding SelectedTournament.FormatIcon}" HorizontalOptions="End" Margin="10, 10, 10, 10" HeightRequest="50"></Image>
+                            </Grid>
+                        </Frame>
+                        <Label Text="Număr de participanți" FontFamily="Atkinson-Italic" FontSize="Small" TextColor="White"></Label>
+                        <Label Text="{Binding SelectedTournament.NumberOfParticipants}" TextColor="White" TextTransform="Uppercase" FontSize="35" HorizontalOptions="Start" FontFamily="Atkinson-Bold"></Label>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

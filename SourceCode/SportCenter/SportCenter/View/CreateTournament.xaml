@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:SportCenter.ViewModels"
+             xmlns:viewModels1="clr-namespace:SportCenter.ViewModels;assembly=SportCenter"
+             x:Class="SportCenter.View.CreateTournament">
+    <ContentPage.BindingContext>
+        <viewModels1:CreateTournamentViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="18*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="#383838" Padding="10" Grid.Row="0">
+                <Image Grid.Row="1" Source="logo.png" Margin="0,0,0,0" Aspect="AspectFit" />
+            </Frame>
+            <Frame CornerRadius="20" BorderColor="#1C9D48" BackgroundColor="#1C9D48" Grid.Row="1" Margin="10, 0, 10, 20" Padding="0">
+                <Grid Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="18*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Text="Creează turneu" HorizontalOptions="Center" Grid.Row="0" FontFamily="Atkinson-Bold" TextColor="White" TextTransform="Uppercase" VerticalOptions="Center" VerticalTextAlignment="Center"></Label>
+                    <Button HorizontalOptions="End" Text="+" Grid.Row="0" WidthRequest="20" BackgroundColor="Transparent" TextColor="White" Margin="0, 0, 20, 0" FontFamily="Atkinson-Bold" Clicked="Button_Clicked" Rotation="45" FontSize="Title" Padding="0"></Button>
+                    <Frame Grid.Row="1" CornerRadius="20" BorderColor="#107438" BackgroundColor="#107438">
+                        <StackLayout>
+                            <Label Text="Nume" FontFamily="Atkinson-Italic" TextColor="White"/>
+                            <Entry Placeholder="Nume turneu" x:Name="Entry" Keyboard="Text" TextColor="White" PlaceholderColor="#40F7F7F7"/>
+                            <Label Text="Descriere" FontFamily="Atkinson-Italic" TextColor="White"/>
+                            <Editor Text="" Placeholder="Descriere" x:Name="Editor" Keyboard="Text" HeightRequest="150" BackgroundColor="White" TextColor="Black" FontFamily="Atkinson-Regular"/>
+                            <Label Text="Format" FontFamily="Atkinson-Italic" TextColor="White"/>
+                            <Picker x:Name="Picker" Title="ALEGE FORMAT" TextColor="White"
+                                    FontFamily="Atkinson-Regular" InputTransparent="False">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Round Robin</x:String>
+                                        <x:String>Single Elimination</x:String>
+                                        <x:String>Tur Retur</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Turneu pe echipe?" VerticalOptions="Center" VerticalTextAlignment="Center" FontFamily="Atkinson-Italic" TextColor="White"></Label>
+                                <Switch x:Name="Switch" VerticalOptions="Center" OnColor="#4a5e50" ThumbColor="#1DAD4B"></Switch>
+                            </StackLayout>
+                            <Button Text="✓" TextColor="#1DAD4B" BackgroundColor="White" HorizontalOptions="Center" Margin="0, 20, 0, 0" Clicked="Button_Clicked_1" WidthRequest="70" HeightRequest="70" CornerRadius="35" FontFamily="Atkinson-Bold" FontSize="Title"></Button>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

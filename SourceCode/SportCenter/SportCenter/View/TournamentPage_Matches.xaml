@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:SportCenter.ViewModels"
+             xmlns:behaviors="clr-namespace:SportCenter.Helper"
+             x:Class="SportCenter.View.TournamentPage_Matches"
+             BackgroundColor="#383838">
+    <!-- <ContentPage.BindingContext> -->
+    <!--     <viewModels:TournamentPage_MatchesViewModel></viewModels:TournamentPage_MatchesViewModel> -->
+    <!-- </ContentPage.BindingContext> -->
+    <Frame CornerRadius="15"  BackgroundColor="{Binding SelectedTournament.FormatColorLight}" Margin="10, 20, 10, 20" Padding="0, 0, 0, 0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="18*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Text="{Binding SelectedTournament.Name}" HorizontalOptions="Center" Grid.Row="0" VerticalOptions="Center" VerticalTextAlignment="Center" FontFamily="Atkinson-Bold" TextColor="White" TextTransform="Uppercase"></Label>
+            <Button HorizontalOptions="End" Text="+" Grid.Row="0" WidthRequest="40" HeightRequest="30" BackgroundColor="Transparent" TextColor="White" Margin="0, 0, 20, 0" FontFamily="Atkinson-Bold" Clicked="Button_Clicked" Rotation="45" FontSize="Title"></Button> 
+            <Frame CornerRadius="20" BackgroundColor="{Binding SelectedTournament.FormatColorDark}" Grid.Row="1" Margin="0, 0, 0, 0" Padding="0, 10, 0, 0">
+                <Grid>
+                    <ListView ItemsSource="{Binding SelectedTournament.Matches}" RowHeight="150" SeparatorColor="Transparent" CachingStrategy="RecycleElementAndDataTemplate"
+                              SelectionMode="None" >
+                        <ListView.Behaviors>
+
+                            <behaviors:EventToCommandBehavior Command="{Binding EditMatchCommand}"
+                                                              EventName="ItemTapped"/>
+
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame CornerRadius="20" BackgroundColor="Transparent" BorderColor="White" Margin="20, 10, 20, 10" Padding="0">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="3*"></RowDefinition>
+                                                <RowDefinition Height="6*"></RowDefinition>
+                                                <RowDefinition Height="2*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="{Binding Stage}" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="White" Grid.Row="0" VerticalOptions="Center" VerticalTextAlignment="Center" FontFamily="Atkinson-Regular" Margin="0, 10, 0, 0"></Label>
+                                            <StackLayout Margin="0, 0, 10, 0" HorizontalOptions="End" VerticalOptions="Center" Orientation="Horizontal" Grid.Row="0">
+                                                <!--  Clicked="Button_Clicked_2" -->
+                                                <Button Text="+" BorderWidth="0" BackgroundColor="Transparent" TextColor="White" FontSize="Title" FontFamily="Atkinson-Bold" 
+                                                        WidthRequest="25" Padding="0"
+                                                        Command="{Binding Path=EditMatchCommand, Source={RelativeSource AncestorType={x:Type viewModels:TournamentPageViewModel}}}"
+                                                        CommandParameter="{Binding }" />
+                                            </StackLayout>
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <StackLayout Grid.Column="0" VerticalOptions="Center" Orientation="Horizontal" HorizontalOptions="End">
+                                                    <Image Source="tournamentCup.png" HeightRequest="10" IsVisible="{Binding WinIconOne}" ></Image>
+                                                    <Label Text="{Binding PlayerOne}" Margin="10, 0, 0, 0" TextColor="White" FontFamily="Atkinson-Bold" TextTransform="Uppercase"></Label>
+                                                </StackLayout>
+                                                <Image Source="tournamentMatches.png" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" Margin="9"></Image>
+                                                <StackLayout Grid.Column="2" VerticalOptions="Center" Orientation="Horizontal" HorizontalOptions="Start">
+                                                    <Label Text="{Binding PlayerTwo}" Margin="0, 0, 10, 0" TextColor="White" VerticalOptions="Center" FontFamily="Atkinson-Bold" TextTransform="Uppercase" ></Label>
+                                                    <Image Source="tournamentCup.png" HeightRequest="10" IsVisible="{Binding WinIconTwo}"></Image>
+                                                </StackLayout>
+                                            </Grid>
+                                            <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy HH:mm}'}" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" Grid.Row="2" FontFamily="Atkinson-Regular" TextColor="White"></Label>
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <!-- Clicked="Button_Clicked_1" -->
+                    <Button Text="+" BorderWidth="0" FontFamily="Atkinson-Bold" BackgroundColor="White" CornerRadius="30" 
+                            TextColor="{Binding SelectedTournament.FormatColorDark}" HorizontalOptions="End" VerticalOptions="End" 
+                            WidthRequest="60" HeightRequest="60" Margin="0,0,20,22" FontSize="Title" 
+                            IsEnabled="{Binding SelectedTournament.AddButton}" IsVisible="{Binding SelectedTournament.AddButton}"
+                            Command="{Binding MatchesGenerateCommand}"/>
+                </Grid>
+            </Frame>
+        </Grid>
+    </Frame>
+</ContentPage>
